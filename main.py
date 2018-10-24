@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
-import chatBot
-import menuInfo
+import _chatBot
+import _menuInfo
 
 
 MSG_PREPARE = " 서비스 준비중입니다."
@@ -8,13 +8,13 @@ MSG_CHOICE = " 세부 메뉴를 선택해주세요."
 
 def main(user_key, c_type, content):
     if c_type == 'text':
-        path = menuInfo.findMenuPath(content, menuInfo.menu)
+        path = _menuInfo.findMenuPath(content, _menuInfo.menu)
         if path != []:
             res = ps1Text(path)
         elif content[0] == '!':
             res = ps1Question(content)
         else:
-            res = chatBot.bot(content)
+            res = _chatBot.bot(content)
     else:
         res = ps1Photo()
     return res
@@ -41,7 +41,7 @@ def ps1Question(text):
     msg['message'] = {'text': '문의' + MSG_PREPARE}
     msg['keyboard'] = {
         'type' : 'buttons',
-        'buttons' : list(menuInfo.menu.keys())
+        'buttons' : list(_menuInfo.menu.keys())
     }
     return msg
 def ps1Photo():
@@ -49,7 +49,7 @@ def ps1Photo():
     msg['message'] = {'text': '이미지' + MSG_PREPARE}
     msg['keyboard'] = {
         'type' : 'buttons',
-        'buttons' : list(menuInfo.menu.keys())
+        'buttons' : list(_menuInfo.menu.keys())
     }
     return msg
 
@@ -60,7 +60,7 @@ def ps2Weather(path):
         msg['message'] = {'text': '날씨' +MSG_CHOICE}
         msg['keyboard'] = {
             'type' : 'buttons',
-            'buttons' : list(menuInfo.menu['날씨'].keys())
+            'buttons' : list(_menuInfo.menu['날씨'].keys())
         }
     elif path[1] == '전체 날씨':
         msg = ps3AllWeather()
@@ -75,7 +75,7 @@ def ps2Food(path):
         msg['message'] = {'text': '학식'+MSG_CHOICE}
         msg['keyboard'] = {
             'type' : 'buttons',
-            'buttons' : list(menuInfo.menu['학식'].keys())
+            'buttons' : list(_menuInfo.menu['학식'].keys())
         }
     elif path[1] == '전체 학식':
         msg = ps3AllFood()
@@ -94,7 +94,7 @@ def ps2Facilities(path):
         msg['message'] = {'text': '편의시설' +MSG_CHOICE}
         msg['keyboard'] = {
             'type' : 'buttons',
-            'buttons' : list(menuInfo.menu['편의시설'].keys())
+            'buttons' : list(_menuInfo.menu['편의시설'].keys())
         }
     elif path[1] == '고양이 버스':
         msg = ps3catBus(path)
@@ -111,7 +111,7 @@ def ps2Contact(path):
         msg['message'] = {'text': '연락처' + MSG_CHOICE}
         msg['keyboard'] = {
             'type' : 'buttons',
-            'buttons' : list(menuInfo.menu['연락처'].keys())
+            'buttons' : list(_menuInfo.menu['연락처'].keys())
         }
     elif path[1] == '대학 연락처':
         msg = ps3CallUniv(path)
@@ -135,7 +135,7 @@ def ps3AllWeather():
     msg['message'] = {'text':f1.read().decode('cp949').encode('utf-8') + f2.read().decode('cp949').encode('utf-8')}
     msg['keyboard'] = {
         'type' : 'buttons',
-        'buttons' : list(menuInfo.menu.keys())
+        'buttons' : list(_menuInfo.menu.keys())
     }
     f1.close()
     f2.close()
@@ -146,7 +146,7 @@ def ps3WeatherToday():
     msg['message'] = {'text':f.read().decode('cp949').encode('utf-8')}
     msg['keyboard'] = {
         'type' : 'buttons',
-        'buttons' : list(menuInfo.menu.keys())
+        'buttons' : list(_menuInfo.menu.keys())
     }
     f.close()
     return msg
@@ -156,7 +156,7 @@ def ps3WeatherTomorrow():
     msg['message'] = {'text':f.read().decode('cp949').encode('utf-8')}
     msg['keyboard'] = {
         'type' : 'buttons',
-        'buttons' : list(menuInfo.menu.keys())
+        'buttons' : list(_menuInfo.menu.keys())
     }
     f.close()
     return msg
@@ -176,7 +176,7 @@ def ps3AllFood():
     }
     msg['keyboard'] = {
         'type' : 'buttons',
-        'buttons' : list(menuInfo.menu.keys())
+        'buttons' : list(_menuInfo.menu.keys())
     }
     f1.close()
     f2.close()
@@ -189,7 +189,7 @@ def ps3Esquare():
     msg['message'] = {'text':f.read().decode('cp949').encode('utf-8')}
     msg['keyboard'] = {
         'type' : 'buttons',
-        'buttons' : list(menuInfo.menu.keys())
+        'buttons' : list(_menuInfo.menu.keys())
     }
     f.close()
     return msg
@@ -199,7 +199,7 @@ def ps3EmotionalCore():
     msg['message'] = {'text':f.read().decode('cp949').encode('utf-8')}
     msg['keyboard'] = {
         'type' : 'buttons',
-        'buttons' : list(menuInfo.menu.keys())
+        'buttons' : list(_menuInfo.menu.keys())
     }
     f.close()
     return msg
@@ -209,7 +209,7 @@ def ps3SchoolCafeteria():
     msg['message'] = {'text':f.read().decode('cp949').encode('utf-8')}
     msg['keyboard'] = {
         'type' : 'buttons',
-        'buttons' : list(menuInfo.menu.keys())
+        'buttons' : list(_menuInfo.menu.keys())
     }
     f.close()
     return msg
@@ -219,7 +219,7 @@ def ps3Dormitory():
     msg['message'] = {'text':f.read().decode('cp949').encode('utf-8')}
     msg['keyboard'] = {
         'type' : 'buttons',
-        'buttons' : list(menuInfo.menu.keys())
+        'buttons' : list(_menuInfo.menu.keys())
     }
     f.close()
     return msg
@@ -230,7 +230,7 @@ def ps3catBus(menu):
         msg['message'] = {'text':'고양이 버스'+ MSG_CHOICE}
         msg['keyboard'] = {
             'type' : 'buttons',
-            'buttons' : list(menuInfo.menu['편의시설']['고양이 버스'].keys())
+            'buttons' : list(_menuInfo.menu['편의시설']['고양이 버스'].keys())
         }
     elif menu[2] == '노선 & 시간표':
         msg = ps4MapNtime()
@@ -245,7 +245,7 @@ def ps3certificate():
     msg['message'] = {'text':f.read().decode('cp949').encode('utf-8')}
     msg['keyboard'] = {
         'type' : 'buttons',
-        'buttons' : list(menuInfo.menu.keys())
+        'buttons' : list(_menuInfo.menu.keys())
     }
     f.close()
     return msg
@@ -255,7 +255,7 @@ def ps3printer():
     msg['message'] = {'text':f.read().decode('cp949').encode('utf-8')}
     msg['keyboard'] = {
         'type' : 'buttons',
-        'buttons' : list(menuInfo.menu.keys())
+        'buttons' : list(_menuInfo.menu.keys())
     }
     f.close()
     return msg
@@ -265,7 +265,7 @@ def ps3ATM():
     msg['message'] = {'text':f.read().decode('cp949').encode('utf-8')}
     msg['keyboard'] = {
         'type' : 'buttons',
-        'buttons' : list(menuInfo.menu.keys())
+        'buttons' : list(_menuInfo.menu.keys())
     }
     f.close()
     return msg
@@ -276,7 +276,7 @@ def ps3CallUniv(menu):
         msg['message'] = {'text':'대학 연락처' +MSG_CHOICE}
         msg['keyboard'] = {
             'type' : 'buttons',
-            'buttons' : list(menuInfo.menu['연락처']['대학 연락처'].keys())
+            'buttons' : list(_menuInfo.menu['연락처']['대학 연락처'].keys())
         }
     elif menu[2] == '융합교양대학':
         msg = ps4Univ1()
@@ -297,7 +297,7 @@ def ps3CallCenter(menu):
         msg['message'] = {'text':'기관 연락처'+ MSG_CHOICE}
         msg['keyboard'] = {
             'type' : 'buttons',
-            'buttons' : list(menuInfo.menu['연락처']['기관 연락처'].keys())
+            'buttons' : list(_menuInfo.menu['연락처']['기관 연락처'].keys())
         }
     elif menu[2] == '대학본부':
         msg = ps4Center1()
@@ -318,7 +318,7 @@ def ps4MapNtime():
     msg['message'] = {'text':f1.read().decode('cp949').encode('utf-8') + f2.read().decode('cp949').encode('utf-8')}
     msg['keyboard'] = {
         'type' : 'buttons',
-        'buttons' : list(menuInfo.menu.keys())
+        'buttons' : list(_menuInfo.menu.keys())
     }
     f1.close()
     f2.close()
@@ -329,7 +329,7 @@ def ps4BusMap():
     msg['message'] = {'text':f.read().decode('cp949').encode('utf-8')}
     msg['keyboard'] = {
         'type' : 'buttons',
-        'buttons' : list(menuInfo.menu.keys())
+        'buttons' : list(_menuInfo.menu.keys())
     }
     f.close()
     return msg
@@ -339,7 +339,7 @@ def ps4BusTime():
     msg['message'] = {'text':f.read().decode('cp949').encode('utf-8')}
     msg['keyboard'] = {
         'type' : 'buttons',
-        'buttons' : list(menuInfo.menu.keys())
+        'buttons' : list(_menuInfo.menu.keys())
     }
     f.close()
     return msg
@@ -350,7 +350,7 @@ def ps4Univ1():
     msg['message'] = {'text':f.read().decode('cp949').encode('utf-8')}
     msg['keyboard'] = {
         'type' : 'buttons',
-        'buttons' : list(menuInfo.menu.keys())
+        'buttons' : list(_menuInfo.menu.keys())
     }
     f.close()
     return msg
@@ -360,7 +360,7 @@ def ps4Univ2():
     msg['message'] = {'text':f.read().decode('cp949').encode('utf-8')}
     msg['keyboard'] = {
         'type' : 'buttons',
-        'buttons' : list(menuInfo.menu.keys())
+        'buttons' : list(_menuInfo.menu.keys())
     }
     f.close()
     return msg
@@ -370,7 +370,7 @@ def ps4Univ3():
     msg['message'] = {'text':f.read().decode('cp949').encode('utf-8')}
     msg['keyboard'] = {
         'type' : 'buttons',
-        'buttons' : list(menuInfo.menu.keys())
+        'buttons' : list(_menuInfo.menu.keys())
     }
     f.close()
     return msg
@@ -380,7 +380,7 @@ def ps4Univ4():
     msg['message'] = {'text':f.read().decode('cp949').encode('utf-8')}
     msg['keyboard'] = {
         'type' : 'buttons',
-        'buttons' : list(menuInfo.menu.keys())
+        'buttons' : list(_menuInfo.menu.keys())
     }
     f.close()
     return msg
@@ -390,7 +390,7 @@ def ps4Univ5():
     msg['message'] = {'text':f.read().decode('cp949').encode('utf-8')}
     msg['keyboard'] = {
         'type' : 'buttons',
-        'buttons' : list(menuInfo.menu.keys())
+        'buttons' : list(_menuInfo.menu.keys())
     }
     f.close()
     return msg
@@ -400,7 +400,7 @@ def ps4Univ6():
     msg['message'] = {'text':'관광문화대학'+MSG_PREPARE}
     msg['keyboard'] = {
         'type' : 'buttons',
-        'buttons' : list(menuInfo.menu.keys())
+        'buttons' : list(_menuInfo.menu.keys())
     }
     # f.close()
     return msg
@@ -411,7 +411,7 @@ def ps4Center1():
     msg['message'] = {'text':'대학본부'+MSG_PREPARE}
     msg['keyboard'] = {
         'type' : 'buttons',
-        'buttons' : list(menuInfo.menu.keys())
+        'buttons' : list(_menuInfo.menu.keys())
     }
     # f.close()
     return msg
@@ -421,7 +421,7 @@ def ps4Center2():
     msg['message'] = {'text':'부속기관'+MSG_PREPARE}
     msg['keyboard'] = {
         'type' : 'buttons',
-        'buttons' : list(menuInfo.menu.keys())
+        'buttons' : list(_menuInfo.menu.keys())
     }
     # f.close()
     return msg
@@ -431,7 +431,7 @@ def ps4Center3():
     msg['message'] = {'text':'부설교육기관'+MSG_PREPARE}
     msg['keyboard'] = {
         'type' : 'buttons',
-        'buttons' : list(menuInfo.menu.keys())
+        'buttons' : list(_menuInfo.menu.keys())
     }
     # f.close()
     return msg
@@ -441,7 +441,7 @@ def ps4Center4():
     msg['message'] = {'text':'기타기관'+MSG_PREPARE}
     msg['keyboard'] = {
         'type' : 'buttons',
-        'buttons' : list(menuInfo.menu.keys())
+        'buttons' : list(_menuInfo.menu.keys())
     }
     # f.close()
     return msg
