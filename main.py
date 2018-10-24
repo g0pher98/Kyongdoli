@@ -271,6 +271,7 @@ def ps3ATM():
     return msg
 
 def ps3CallUniv(menu):
+    msg={}
     if len(menu) < 3:
         msg['message'] = {'text':'대학 연락처' +MSG_CHOICE}
         msg['keyboard'] = {

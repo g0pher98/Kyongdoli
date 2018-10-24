@@ -1,47 +1,59 @@
 # -*- coding: utf-8 -*-
 
-menu = {
-    '날씨' : {
-        '전체 날씨' : {},
-        '오늘 날씨' : {},
-        '내일 날씨' : {}
-    },
-    '학식' : {
-        '전체 학식'  : {},
-        '이스퀘어'   : {},
-        '감성코어'   : {},
-        '교직원식당' : {},
-        '기숙사'     : {},
-    },
-    '편의시설' : {
-        '고양이 버스'        : {
-            '노선 & 시간표' : {},
-            '버스 노선도'   : {},
-            '버스 시간표'   : {}
-        },
-        '증명서 발급기 위치' : {},
-        '프린터기 위치'      : {},
-        'ATM기 위치'        : {}
-    },
-    '연락처' : {
-        '대학 연락처' : {
-            '융합교양대학'       : {},
-            '휴먼인재융합대학'   : {},
-            '지식정보서비스대학' : {},
-            '융합과학대학'       : {},
-            '창의공과대학'       : {},
-            '관광문화대학'       : {}
-        },
-        '기관 연락처' : {
-            '대학본부'     : {},
-            '부속기관'     : {},
-            '부설교육기관' : {},
-            '기타기관'     : {}
-        }
-    },
-    '챗봇' : {},
-    '문의' : {}
-}
+from collections import OrderedDict
+
+#side3
+catbus = OrderedDict()
+catbus['노선 & 시간표'] = {}
+catbus['버스 노선도'] = {}
+catbus['버스 시간표'] = {}
+
+univ = OrderedDict()
+univ['융합교양대학'] = {}
+univ['휴먼인재융합대학'] = {}
+univ['지식정보서비스대학'] = {}
+univ['융합과학대학'] = {}
+univ['창의공과대학'] = {}
+univ['관광문화대학'] = {}
+
+center = OrderedDict()
+center['대학본부'] = {}
+center['부속기관'] = {}
+center['부설교육기관'] = {}
+center['기타기관'] = {}
+
+#deep2
+weather = OrderedDict()
+weather['전체 날씨'] = {}
+weather['오늘 날씨'] = {}
+weather['내일 날씨'] = {}
+
+food = OrderedDict()
+food['전체 학식'] = {}
+food['이스퀘어'] = {}
+food['감성코어'] = {}
+food['교직원식당'] = {}
+food['기숙사'] = {}
+
+facilities = OrderedDict()
+facilities['고양이 버스'] = catbus
+facilities['증명서 발급기 위치'] = {}
+facilities['프린터기 위치'] = {}
+facilities['ATM기 위치'] = {}
+
+contact = OrderedDict()
+contact['대학 연락처'] = univ
+contact['기관 연락처'] = center
+
+
+#deep1
+menu = OrderedDict()
+menu['날씨'] = weather
+menu['학식'] = food
+menu['편의시설'] = facilities
+menu['연락처'] = contact
+menu['챗봇'] = {}
+menu['문의'] = {}
 
 def findMenuPath(input, dics):
     for i in dics:
