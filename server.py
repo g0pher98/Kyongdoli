@@ -2,6 +2,7 @@
 
 import os
 from main import *
+import _menuInfo
 from flask import Flask, request, jsonify, render_template
 
 ''' 식별 변수
@@ -40,7 +41,7 @@ app = Flask(__name__)
 def mainMenu():
 	msg = {}
 	msg['type'] = 'buttons'
-	msg['buttons'] = list(menuInfo.menu.keys())
+	msg['buttons'] = list(_menuInfo.menu.keys())
 	return jsonify(msg)
 
 #사용자가 메시지를 보냈을 때

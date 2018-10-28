@@ -169,10 +169,10 @@ def ps3AllFood():
     f4 = open("./res/food_dormitory.txt", 'r')
     msg['message'] = {
         'text':
-            "## E-스퀘어 ##\n" + f1.read().decode('cp949').encode('utf-8') +
-            "\n## 감성코어 ##\n" + f2.read().decode('cp949').encode('utf-8') +
-            "\n## 교직원식당 ##\n" + f3.read().decode('cp949').encode('utf-8') +
-            "\n## 기숙사 ##\n" + f4.read().decode('cp949').encode('utf-8')
+            "● E-스퀘어 ●\n" + f1.read().decode('utf-8').encode('utf-8') +
+            "\n● 감성코어 ●\n" + f2.read().decode('utf-8').encode('utf-8') +
+            "\n● 교직원식당 ●\n" + f3.read().decode('utf-8').encode('utf-8') +
+            "\n● 기숙사 ●\n" + f4.read().decode('utf-8').encode('utf-8')
     }
     msg['keyboard'] = {
         'type' : 'buttons',
@@ -186,7 +186,7 @@ def ps3AllFood():
 def ps3Esquare():
     msg = {}
     f = open("./res/food_esquare.txt", 'r')
-    msg['message'] = {'text':f.read().decode('cp949').encode('utf-8')}
+    msg['message'] = {'text':f.read().decode('utf-8').encode('utf-8')}
     msg['keyboard'] = {
         'type' : 'buttons',
         'buttons' : list(_menuInfo.menu.keys())
@@ -196,7 +196,7 @@ def ps3Esquare():
 def ps3EmotionalCore():
     msg = {}
     f = open("./res/food_emotionalcore.txt", 'r')
-    msg['message'] = {'text':f.read().decode('cp949').encode('utf-8')}
+    msg['message'] = {'text':f.read().decode('utf-8').encode('utf-8')}
     msg['keyboard'] = {
         'type' : 'buttons',
         'buttons' : list(_menuInfo.menu.keys())
@@ -206,7 +206,7 @@ def ps3EmotionalCore():
 def ps3SchoolCafeteria():
     msg = {}
     f = open("./res/food_schoolcafeteria.txt", 'r')
-    msg['message'] = {'text':f.read().decode('cp949').encode('utf-8')}
+    msg['message'] = {'text':f.read().decode('utf-8').encode('utf-8')}
     msg['keyboard'] = {
         'type' : 'buttons',
         'buttons' : list(_menuInfo.menu.keys())
@@ -216,7 +216,7 @@ def ps3SchoolCafeteria():
 def ps3Dormitory():
     msg = {}
     f = open("./res/food_dormitory.txt", 'r')
-    msg['message'] = {'text':f.read().decode('cp949').encode('utf-8')}
+    msg['message'] = {'text':f.read().decode('utf-8').encode('utf-8')}
     msg['keyboard'] = {
         'type' : 'buttons',
         'buttons' : list(_menuInfo.menu.keys())
@@ -446,5 +446,3 @@ def ps4Center4():
     # f.close()
     return msg
 
-g0pher = input("> ")
-print(main(1,'text',g0pher))
