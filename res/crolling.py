@@ -15,6 +15,17 @@ def foodCrolling():
     output("food_emotionalcore.txt",foodMenu(base[1]))
     output("food_schoolcafeteria.txt",foodMenu(base[2]))
 
+def dormCrolling():
+    #html 요청
+    url = "http://dorm.kyonggi.ac.kr/Khostel/mall_main.php?viewform=B0001_foodboard_view&board_no=1&food_dt=2017-10-28"
+    data = {}
+    data['viewform'] = 'B0001_food_view'
+    data['board_no'] = 1
+    ''' 반복
+        data['food_at'] = 
+        res = requests.get(url, params = data)
+    '''
+
 def foodMenu(raw):
     menu = OrderedDict()
     date = ''
@@ -54,4 +65,5 @@ def weatherCrolling():
     code = requests.get(url).test
 
 
-foodCrolling()
+//foodCrolling()
+dormCrolling()
