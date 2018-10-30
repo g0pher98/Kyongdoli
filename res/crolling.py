@@ -2,6 +2,7 @@
 import requests
 from bs4 import BeautifulSoup
 from collections import OrderedDict
+import datetime
 
 def foodCrolling():
     #html 요청
@@ -17,14 +18,21 @@ def foodCrolling():
 
 def dormCrolling():
     #html 요청
-    url = "http://dorm.kyonggi.ac.kr/Khostel/mall_main.php?viewform=B0001_foodboard_view&board_no=1&food_dt=2017-10-28"
+    dt = datetime.datetime.now()
+    url = "http://dorm.kyonggi.ac.kr/Khostel/mall_main.php"
     data = {}
-    data['viewform'] = 'B0001_food_view'
+    data['viewform'] = 'B0001_foodboard_view'
     data['board_no'] = 1
-    ''' 반복
-        data['food_at'] = 
+    weekpoint = dt - datetime.timedelta(days=dt.weekday())
+    for i in range(6):
+        data['food_at'] = (weekpoint + datetime.timedelta(days=i)).strftime("%Y-%m-%d")
         res = requests.get(url, params = data)
-    '''
+        soup = BeautifulSoup(res.text,'lxml', from_encoding='euc-kr')
+        foods = soup.find_all('td',{'class':'padding-6'})
+        #foods[0] 조식
+        #foods[1] 중식
+        #foods[2] 석식
+        #foods[3] 운영시간
 
 def foodMenu(raw):
     menu = OrderedDict()
@@ -65,5 +73,5 @@ def weatherCrolling():
     code = requests.get(url).test
 
 
-//foodCrolling()
+#foodCrolling()
 dormCrolling()
